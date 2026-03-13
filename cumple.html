@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Feliz Cumpleaños ❤️</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    text-align:center;
+    background:#ffe6f0;
+    padding:40px;
+}
+
+#mensaje{
+    font-size:24px;
+    margin:40px;
+}
+
+button{
+    padding:12px 25px;
+    font-size:18px;
+    background:#ff4d6d;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#e63956;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>💖 Para ti 💖</h1>
+
+<div id="mensaje">
+Hola amor ❤️  
+Hoy quiero decirte algo especial.
+</div>
+
+<button onclick="siguiente()">Siguiente</button>
+
+<script>
+
+let mensajes = [
+
+"Hoy celebramos tu vida 🎂",
+
+"Gracias por acompañarme en los momentos buenos y también en los difíciles",
+
+"Eres una persona muy importante para mí ❤️",
+
+"Feliz cumpleaños mi amor 🎉",
+
+"Tengo un pequeño regalo para ti 👟",
+
+"Revisa tu Bancolombia 😉"
+
+];
+
+let i = 0;
+
+function siguiente(){
+
+if(i < mensajes.length){
+document.getElementById("mensaje").innerHTML = mensajes[i];
+i++;
+}
+}
+
+</script>
+
+</body>
+</html>
