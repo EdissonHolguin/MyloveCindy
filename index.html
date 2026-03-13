@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para Cindy ❤️</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+text-align:center;
+overflow:hidden;
+}
+
+.container{
+background:white;
+padding:40px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+max-width:500px;
+}
+
+h1{
+color:#ff4d6d;
+}
+
+button{
+padding:12px 25px;
+font-size:18px;
+border:none;
+border-radius:10px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+margin-top:20px;
+}
+
+button:hover{
+background:#e63956;
+}
+
+.heart{
+position:absolute;
+color:red;
+animation:fall 5s linear infinite;
+}
+
+@keyframes fall{
+0%{transform:translateY(-100px);}
+100%{transform:translateY(100vh);}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 id="titulo">Hola Cindy ❤️</h1>
+
+<p id="mensaje">
+Tengo algo pequeño que quiero decirte...
+</p>
+
+<button onclick="siguiente()">Siguiente</button>
+
+</div>
+
+<script>
+
+let mensajes = [
+
+"Hoy celebramos algo muy especial 🎂",
+
+"Celebramos tu vida y lo importante que eres para mí",
+
+"Gracias por acompañarme en momentos buenos y difíciles",
+
+"Eres una persona muy especial Cindy ❤️",
+
+"Feliz cumpleaños 🎉",
+
+"Tengo un pequeño regalo para ti 👟",
+
+"Revisa tu Bancolombia 😉"
+
+];
+
+let i = 0;
+
+function siguiente(){
+
+if(i < mensajes.length){
+
+document.getElementById("mensaje").innerHTML = mensajes[i];
+i++;
+
+}else{
+
+document.getElementById("mensaje").innerHTML = "Espero que este pequeño detalle te saque una sonrisa 💖";
+document.querySelector("button").innerHTML = "Ver otra vez";
+i = 0;
+
+}
+
+}
+
+function crearCorazon(){
+
+let heart = document.createElement("div");
+
+heart.className = "heart";
+
+heart.innerHTML = "❤️";
+
+heart.style.left = Math.random()*100 + "vw";
+
+heart.style.fontSize = Math.random()*20+10+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),5000);
+
+}
+
+setInterval(crearCorazon,300);
+
+</script>
+
+</body>
+</html>
