@@ -144,6 +144,7 @@ to{transform:translateY(110vh) rotate(360deg)}
 #gift{
 font-size:4rem;
 display:none;
+cursor:pointer;
 animation:bounce 1s infinite alternate;
 }
 
@@ -157,12 +158,10 @@ to{transform:translateY(-15px)}
 
 <body>
 
-<!-- Música -->
 <audio id="musica" loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6a0e3c3fbb.mp3?filename=sweet-romantic-background-112199.mp3" type="audio/mpeg">
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6a0e3c3fbb.mp3?filename=sweet-romantic-background-112199.mp3">
 </audio>
 
-<!-- sonido globo -->
 <audio id="pop">
 <source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_7c64f0d2b1.mp3?filename=balloon-pop-101059.mp3">
 </audio>
@@ -192,21 +191,22 @@ to{transform:translateY(-15px)}
 
 <button onclick="siguiente()" id="btn-next">Continuar</button>
 
-<div id="gift">🎁</div>
+<div id="gift" onclick="mostrarRegalo()">🎁</div>
 
 </div>
 
 <script>
 
 const mensajes=[
-"Amore Hoy celebramos tu vida 🎂",
+"Amore hoy celebramos tu vida 🎂",
 "La persona maravillosa que eres",
 "Tu sonrisa alegra mis días",
 "Gracias por acompañarme siempre",
 "Eres muy especial para mí ❤️",
-"Feliz cumpleaños Mi Amor🎉",
+"Feliz cumpleaños mi amor 🎉",
 "Tengo un pequeño regalo para ti 👟",
-"Espero que este detalle te saque una sonrisa 💖"
+"Espero que este detalle te saque una sonrisa 💖",
+"Presiona el regalo 🎁"
 ];
 
 let i=0;
@@ -293,11 +293,18 @@ i++;
 }else{
 
 document.getElementById("gift").style.display="block";
-p.innerHTML="TÚ REGALO ES ELEGIR LOS TENIS QUE MAS TE GUSTEN 👟❤️";
-btn.innerHTML="Ver otra vez";
-i=0;
+btn.style.display="none";
 
 }
+
+}
+
+/* ===== regalo final ===== */
+
+function mostrarRegalo(){
+
+document.getElementById("mensaje").innerHTML=
+"Tu regalo es elegir los tenis que más te gusten 👟❤️";
 
 }
 
@@ -355,6 +362,10 @@ setTimeout(()=>conf.remove(),3000);
 
 }
 
+</script>
+
+</body>
+</html>
 </script>
 
 </body>
