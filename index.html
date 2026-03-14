@@ -46,12 +46,20 @@
         button:hover { background: #e63956; transform: scale(1.05); }
 
         /* Estilos de los Globos (Inicio) */
-        .balloon-start {
-            width: 80px; height: 100px; border-radius: 50%;
-            cursor: pointer; position: relative; transition: transform 0.2s;
-            box-shadow: inset -10px -10px 15px rgba(0,0,0,0.1);
-            animation: float 3s ease-in-out infinite; margin: 0 30px;
-        }
+.balloon-start{
+width:80px;
+height:100px;
+border-radius:50%;
+cursor:pointer;
+position:relative;
+transition:transform 0.2s;
+box-shadow: inset -10px -10px 15px rgba(0,0,0,0.1);
+animation: float 3s ease-in-out infinite;
+margin:0 30px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
         .balloon-start::after { content: ""; position: absolute; bottom: -10px; left: 35px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 10px solid; color: inherit;}
         
         #globo1 { background-color: #ff4d6d; color: #ff4d6d; }
@@ -75,15 +83,15 @@
 </head>
 <body>
 
-<audio id="musica" loop preload="auto">
-    <source src="https://cdn.pixabay.com/audio/2024/02/19/audio_d06f6583971e411b0e91.mp3" type="audio/mpeg">
+<audio id="musica" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6a0e3c3fbb.mp3?filename=sweet-romantic-background-112199.mp3" type="audio/mpeg">
 </audio>
 
 <div id="capa-inicio">
     <p id="mensaje-inicial">Para Cindy, con amor...<br>Pon sonido y explota los globos 🎈🎈</p>
     
     <div style="display: flex;">
-        <div id="globo1" class="balloon-start" onclick="explotarGlobo(1)"></div>
+        <div id="globo1" class="balloon-start" onclick="explotarGlobo(1)">🎈</div>
         <div id="globo2" class="balloon-start" onclick="explotarGlobo(2)" style="animation-delay: 0.5s;"></div>
     </div>
     
@@ -123,7 +131,9 @@
         globosExplotados++;
 
         // Intento de reproducir música en CADA clic (para asegurar permisos)
-        audio.play().catch(e => console.log("Música esperando permiso."));
+       audio.muted = false;
+audio.currentTime = 0;
+audio.play().catch(()=>{});
 
         setTimeout(() => {
             globo.style.visibility = 'hidden';
