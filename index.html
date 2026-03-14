@@ -1,214 +1,361 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Cindy ❤️</title>
-    <style>
-        body {
-            margin: 0; font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
-            display: flex; justify-content: center; align-items: center;
-            height: 100vh; text-align: center; overflow: hidden; position: relative;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Cindy ❤️</title>
 
-        /* Capa de inicio (Globos para reventar) */
-        #capa-inicio {
-            position: absolute; width: 100%; height: 100%;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            z-index: 200; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; transition: opacity 1s;
-        }
+<style>
 
-        #mensaje-inicial { font-size: 1.5rem; color: #ff4d6d; margin-bottom: 50px; }
-
-        /* Contenedor Principal (Carta - oculto al inicio) */
-        .container {
-            background: white; padding: 40px; border-radius: 25px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-            max-width: 400px; width: 85%; z-index: 100;
-            display: none; /* Se activa con JS */
-            animation: fadeIn 1s ease forwards;
-        }
-
-        @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
-
-        img { width: 100%; max-width: 180px; border-radius: 50%; border: 5px solid #ff4d6d; margin-bottom: 15px; }
-        h1 { color: #ff4d6d; margin-bottom: 10px; }
-        #mensaje { font-size: 1.1rem; color: #444; min-height: 50px; transition: opacity 0.3s; }
-
-        button {
-            padding: 12px 25px; font-size: 1rem; border: none;
-            border-radius: 25px; background: #ff4d6d; color: white;
-            cursor: pointer; margin-top: 20px; transition: 0.3s;
-        }
-        button:hover { background: #e63956; transform: scale(1.05); }
-
-        /* Estilos de los Globos (Inicio) */
-.balloon-start{
-width:80px;
-height:100px;
-border-radius:50%;
-cursor:pointer;
-position:relative;
-transition:transform 0.2s;
-box-shadow: inset -10px -10px 15px rgba(0,0,0,0.1);
-animation: float 3s ease-in-out infinite;
-margin:0 30px;
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(135deg,#fbc2eb,#a6c1ee);
 display:flex;
-align-items:center;
 justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
+text-align:center;
 }
-        .balloon-start::after { content: ""; position: absolute; bottom: -10px; left: 35px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 10px solid; color: inherit;}
-        
-        #globo1 { background-color: #ff4d6d; color: #ff4d6d; }
-        #globo2 { background-color: #a6c1ee; color: #a6c1ee; }
 
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+/* ===== Pantalla inicio ===== */
 
-        /* Efecto Explosión */
-        .pop { animation: explode 0.3s forwards; pointer-events: none; }
-        @keyframes explode { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(2); opacity: 0; } }
+#capa-inicio{
+position:absolute;
+width:100%;
+height:100%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:rgba(255,255,255,0.6);
+backdrop-filter:blur(10px);
+z-index:200;
+transition:opacity 1s;
+}
 
-        /* Fresas que aparecen */
-        .strawberry { font-size: 3rem; animation: fantaSlide 1s ease-out forwards; position: relative; z-index: 210; margin-bottom: 20px; }
-        @keyframes fantaSlide { 0% { opacity: 0; transform: translateY(50px) scale(0.5); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+#mensaje-inicial{
+font-size:1.5rem;
+color:#ff4d6d;
+margin-bottom:40px;
+}
 
-        /* Corazones de fondo */
-        .heart { position: absolute; top: -10%; color: #ff4d6d; animation: fall linear forwards; opacity: 0.7; pointer-events: none; z-index: 50;}
-        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+.balloon-start{
+width:90px;
+height:110px;
+border-radius:50%;
+margin:0 30px;
+cursor:pointer;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:40px;
+animation:float 3s ease-in-out infinite;
+box-shadow: inset -10px -10px 15px rgba(0,0,0,0.1);
+}
 
-    </style>
+#globo1{background:#ff4d6d;}
+#globo2{background:#a6c1ee;}
+
+@keyframes float{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-20px)}
+}
+
+.pop{
+animation:explode 0.3s forwards;
+}
+
+@keyframes explode{
+0%{transform:scale(1);opacity:1}
+100%{transform:scale(2);opacity:0}
+}
+
+.strawberry{
+font-size:3rem;
+animation:slide 1s forwards;
+margin-top:20px;
+}
+
+@keyframes slide{
+from{opacity:0;transform:translateY(40px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+/* ===== Carta ===== */
+
+.container{
+background:white;
+padding:40px;
+border-radius:25px;
+box-shadow:0 20px 50px rgba(0,0,0,0.15);
+max-width:420px;
+display:none;
+animation:fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(30px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+img{
+width:180px;
+border-radius:50%;
+border:5px solid #ff4d6d;
+margin-bottom:15px;
+}
+
+h1{color:#ff4d6d;}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:25px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+margin-top:20px;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+background:#e63956;
+}
+
+/* ===== Corazones ===== */
+
+.heart{
+position:absolute;
+top:-10%;
+color:#ff4d6d;
+animation:fall linear forwards;
+opacity:0.7;
+}
+
+@keyframes fall{
+to{transform:translateY(110vh) rotate(360deg)}
+}
+
+/* ===== Caja regalo ===== */
+
+#gift{
+font-size:4rem;
+display:none;
+animation:bounce 1s infinite alternate;
+}
+
+@keyframes bounce{
+from{transform:translateY(0)}
+to{transform:translateY(-15px)}
+}
+
+</style>
 </head>
+
 <body>
 
+<!-- Música -->
 <audio id="musica" loop>
 <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6a0e3c3fbb.mp3?filename=sweet-romantic-background-112199.mp3" type="audio/mpeg">
 </audio>
 
+<!-- sonido globo -->
+<audio id="pop">
+<source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_7c64f0d2b1.mp3?filename=balloon-pop-101059.mp3">
+</audio>
+
 <div id="capa-inicio">
-    <p id="mensaje-inicial">Para Cindy, con amor...<br>Pon sonido y explota los globos 🎈🎈</p>
-    
-    <div style="display: flex;">
-        <div id="globo1" class="balloon-start" onclick="explotarGlobo(1)">🎈</div>
-        <div id="globo2" class="balloon-start" onclick="explotarGlobo(2)" style="animation-delay: 0.5s;"></div>
-    </div>
-    
-    <div id="cont-fresas" style="display:flex; flex-direction:column; align-items:center; margin-top: 30px;"></div>
-    
-    <button id="btn-comenzar-carta" style="display:none;" onclick="mostrarCarta()">Leer tu carta ❤️</button>
+
+<p id="mensaje-inicial">Para Cindy, con amor…<br>Explota los globos 🎈</p>
+
+<div style="display:flex">
+<div id="globo1" class="balloon-start" onclick="explotarGlobo(1)">🎈</div>
+<div id="globo2" class="balloon-start" onclick="explotarGlobo(2)">🎈</div>
+</div>
+
+<div id="cont-fresas"></div>
+
+<button id="btn-comenzar" style="display:none" onclick="mostrarCarta()">Leer tu carta ❤️</button>
+
 </div>
 
 <div class="container" id="main-container">
-    <h1>Cindy ❤️</h1>
-    <img src="cindy.jpeg" alt="Cindy">
-    <p id="mensaje">Hoy quiero mostrarte algo especial...</p>
-    <button id="btn-next" onclick="siguiente()">Continuar</button>
+
+<h1>Cindy ❤️</h1>
+
+<img src="cindy.jpeg">
+
+<p id="mensaje">Hoy quiero mostrarte algo especial...</p>
+
+<button onclick="siguiente()" id="btn-next">Continuar</button>
+
+<div id="gift">🎁</div>
+
 </div>
 
 <script>
-    const mensajes = [
-        "Hoy celebramos tu vida 🎂",
-        "La persona más maravillosa que eres",
-        "Tu sonrisa ilumina mis días",
-        "Gracias por acompañarme en todo momento",
-        "Eres muy especial para mí ❤️",
-        "¡Feliz cumpleaños Cindy! 🎉",
-        "Tengo un pequeño regalo para ti 👟",
-        "Espero que este detalle te saque una sonrisa 💖",
-        "Tu regalo es elegir los tenis que más te gusten 👟❤️"
-    ];
 
-    let i = 0;
-    let globosExplotados = 0;
-    const audio = document.getElementById("musica");
+const mensajes=[
+"Hoy celebramos tu vida 🎂",
+"La persona maravillosa que eres",
+"Tu sonrisa ilumina mis días",
+"Gracias por acompañarme siempre",
+"Eres muy especial para mí ❤️",
+"Feliz cumpleaños Cindy 🎉",
+"Tengo un pequeño regalo para ti 👟",
+"Espero que este detalle te saque una sonrisa 💖"
+];
 
-    // === Fase 1: Los dos globos iniciales ===
-    function explotarGlobo(num) {
-        const globo = document.getElementById(`globo${num}`);
-        globo.classList.add('pop');
-        globosExplotados++;
+let i=0;
+let globos=0;
 
-        // Intento de reproducir música en CADA clic (para asegurar permisos)
-       audio.muted = false;
-audio.currentTime = 0;
+const audio=document.getElementById("musica");
+const pop=document.getElementById("pop");
+
+/* ===== Globos ===== */
+
+function explotarGlobo(n){
+
+document.getElementById("globo"+n).classList.add("pop");
+
+pop.play();
+
+if(audio.paused){
 audio.play().catch(()=>{});
+}
 
-        setTimeout(() => {
-            globo.style.visibility = 'hidden';
-            crearFresa();
-        }, 300);
-    }
+globos++;
 
-    function crearFresa() {
-        const cont = document.getElementById('cont-fresas');
-        const straw = document.createElement('div');
-        straw.className = 'strawberry';
-        
-        if(globosExplotados === 1) {
-            straw.innerHTML = "🍓 <span style='font-size:1.2rem; color:#444;'>Prepárate...</span>";
-        } else if (globosExplotados === 2) {
-            straw.innerHTML = "🍓🍓 <span style='font-size:1.2rem; color:#444;'>...para tu cumpleaños</span>";
-            // Mostramos el botón para ir a la carta
-            document.getElementById('btn-comenzar-carta').style.display = 'block';
-            document.getElementById('mensaje-inicial').style.display = 'none';
-        }
-        
-        cont.appendChild(straw);
-    }
+setTimeout(()=>{
+crearFresa();
+},300);
 
-    // Transición de Globos a Carta
-    function mostrarCarta() {
-        document.getElementById('capa-inicio').style.opacity = '0';
-        setTimeout(() => {
-            document.getElementById('capa-inicio').style.display = 'none';
-            document.getElementById('main-container').style.display = 'block';
-        }, 1000);
-    }
+}
 
+function crearFresa(){
 
-    // === Fase 2: La Carta (Lo que ya tenías) ===
-    function siguiente() {
-        // Doble asegurado de música (por si acaso)
-        if(audio.paused) audio.play();
+const cont=document.getElementById("cont-fresas");
 
-        const pMensaje = document.getElementById("mensaje");
-        const btn = document.getElementById("btn-next");
+const f=document.createElement("div");
 
-        if(i < mensajes.length){
-            pMensaje.style.opacity = 0;
-            setTimeout(() => {
-                pMensaje.innerHTML = mensajes[i];
-                pMensaje.style.opacity = 1;
-                i++;
-                if(i === mensajes.length) {
-                    btn.innerHTML = "Ver otra vez";
-                } else {
-                    btn.innerHTML = "Continuar";
-                }
-            }, 300);
-        } else {
-            i = 0;
-            pMensaje.innerHTML = "Tu regalo es elegir los tenis que más te gusten 👟❤️";
-            btn.innerHTML = "Ver otra vez";
-        }
-    }
+f.className="strawberry";
 
-    // Corazones de fondo constantes
-    function crearCorazon(){
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerHTML = "❤️";
-        heart.style.left = Math.random() * 100 + "vw";
-        const duracion = Math.random() * 3 + 3;
-        heart.style.animationDuration = duracion + "s";
-        heart.style.fontSize = Math.random() * 20 + 15 + "px";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), duracion * 1000);
-    }
-    setInterval(crearCorazon, 400);
+if(globos==1){
+f.innerHTML="🍓 Prepárate…";
+}
+
+if(globos==2){
+f.innerHTML="🍓🍓 …para tu cumpleaños";
+document.getElementById("btn-comenzar").style.display="block";
+document.getElementById("mensaje-inicial").style.display="none";
+}
+
+cont.appendChild(f);
+
+}
+
+/* ===== transición carta ===== */
+
+function mostrarCarta(){
+
+document.getElementById("capa-inicio").style.opacity=0;
+
+crearConfetti();
+
+setTimeout(()=>{
+document.getElementById("capa-inicio").style.display="none";
+document.getElementById("main-container").style.display="block";
+},1000);
+
+}
+
+/* ===== mensajes carta ===== */
+
+function siguiente(){
+
+const p=document.getElementById("mensaje");
+
+const btn=document.getElementById("btn-next");
+
+if(i<mensajes.length){
+
+p.style.opacity=0;
+
+setTimeout(()=>{
+p.innerHTML=mensajes[i];
+p.style.opacity=1;
+i++;
+},300);
+
+}else{
+
+document.getElementById("gift").style.display="block";
+p.innerHTML="Tu regalo es elegir los tenis que más te gusten 👟❤️";
+btn.innerHTML="Ver otra vez";
+i=0;
+
+}
+
+}
+
+/* ===== corazones ===== */
+
+function crearCorazon(){
+
+const heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+const dur=Math.random()*3+3;
+
+heart.style.animationDuration=dur+"s";
+
+heart.style.fontSize=Math.random()*20+15+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),dur*1000);
+
+}
+
+setInterval(crearCorazon,400);
+
+/* ===== confetti ===== */
+
+function crearConfetti(){
+
+for(let i=0;i<80;i++){
+
+const conf=document.createElement("div");
+
+conf.innerHTML="🎉";
+
+conf.style.position="absolute";
+
+conf.style.left=Math.random()*100+"vw";
+
+conf.style.top="-10px";
+
+conf.style.fontSize=Math.random()*20+10+"px";
+
+conf.style.animation="fall 3s linear forwards";
+
+document.body.appendChild(conf);
+
+setTimeout(()=>conf.remove(),3000);
+
+}
+
+}
 
 </script>
+
 </body>
 </html>
