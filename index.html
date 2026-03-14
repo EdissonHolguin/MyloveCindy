@@ -21,9 +21,22 @@ overflow:hidden;
 .container{
 background:white;
 padding:40px;
+border-radius:25px;
+box-shadow:0 20px 50px rgba(0,0,0,0.2);
+max-width:420px;
+animation:fadeIn 2s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(30px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+img{
+width:200px;
 border-radius:20px;
-box-shadow:0 15px 40px rgba(0,0,0,0.2);
-max-width:450px;
+margin-bottom:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
 
 h1{
@@ -38,30 +51,26 @@ color:#444;
 
 button{
 padding:12px 25px;
-font-size:18px;
+font-size:17px;
 border:none;
 border-radius:25px;
 background:#ff4d6d;
 color:white;
 cursor:pointer;
 margin-top:20px;
+transition:0.3s;
 }
 
 button:hover{
 background:#e63956;
-}
-
-img{
-width:200px;
-border-radius:15px;
-margin-bottom:15px;
-box-shadow:0 8px 20px rgba(0,0,0,0.2);
+transform:scale(1.05);
 }
 
 .heart{
 position:absolute;
 color:#ff4d6d;
-animation:fall 5s linear infinite;
+animation:fall 6s linear infinite;
+opacity:0.7;
 }
 
 @keyframes fall{
@@ -70,6 +79,7 @@ animation:fall 5s linear infinite;
 }
 
 </style>
+
 </head>
 
 <body>
@@ -80,15 +90,15 @@ animation:fall 5s linear infinite;
 
 <div class="container">
 
-<img src="cindy.jpeg">
-
 <h1>Cindy ❤️</h1>
 
+<img src="cindy.jpeg">
+
 <p id="mensaje">
-Hoy quiero decirte algo especial...
+Hoy quiero mostrarte algo especial...
 </p>
 
-<button onclick="siguiente()">Siguiente</button>
+<button onclick="siguiente()">Continuar</button>
 
 </div>
 
@@ -96,21 +106,23 @@ Hoy quiero decirte algo especial...
 
 let mensajes = [
 
-"Hoy celebramos algo muy especial 🎂",
+"Hoy celebramos tu vida 🎂",
 
-"Celebramos tu vida y lo importante que eres para mí",
+"Celebramos la persona maravillosa que eres",
+
+"Tu sonrisa ilumina mis días",
 
 "Gracias por acompañarme en momentos buenos y difíciles",
 
-"Eres una persona muy especial para mí ❤️",
-
-"Tu sonrisa ilumina mis días",
+"Eres muy especial para mí ❤️",
 
 "Feliz cumpleaños Cindy 🎉",
 
 "Tengo un pequeño regalo para ti 👟",
 
-"Revisa tu Bancolombia 😉"
+"Espero que este detalle te saque una sonrisa 💖",
+
+"Ahora... abre tu regalo 🎁"
 
 ];
 
@@ -121,12 +133,13 @@ function siguiente(){
 if(i < mensajes.length){
 
 document.getElementById("mensaje").innerHTML = mensajes[i];
+
 i++;
 
 }else{
 
 document.getElementById("mensaje").innerHTML =
-"Espero que este pequeño detalle te saque una sonrisa 💖";
+"Tu regalo es elegir los tenis que más te gusten 👟❤️";
 
 document.querySelector("button").innerHTML = "Ver otra vez";
 
@@ -146,20 +159,17 @@ heart.innerHTML = "❤️";
 
 heart.style.left = Math.random()*100 + "vw";
 
-heart.style.fontSize = Math.random()*20+10+"px";
+heart.style.fontSize = Math.random()*20+15+"px";
 
 document.body.appendChild(heart);
 
-setTimeout(()=>heart.remove(),5000);
+setTimeout(()=>heart.remove(),6000);
 
 }
 
-setInterval(crearCorazon,300);
+setInterval(crearCorazon,350);
 
 </script>
-
-</body>
-</html>
 
 </body>
 </html>
