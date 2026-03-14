@@ -15,152 +15,206 @@
             height: 100vh;
             text-align: center;
             overflow: hidden;
+            position: relative;
         }
 
         .container {
-            background: white;
+            background: rgba(255, 255, 255, 0.9);
             padding: 40px;
-            border-radius: 25px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-            max-width: 420px;
-            width: 90%;
-            z-index: 10;
-            animation: fadeIn 1.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            max-width: 400px;
+            width: 85%;
+            z-index: 100;
+            backdrop-filter: blur(5px);
         }
 
         img {
             width: 100%;
-            max-width: 200px;
-            height: auto;
-            border-radius: 20px;
+            max-width: 180px;
+            border-radius: 50%; /* Foto circular para más elegancia */
+            border: 5px solid #ff4d6d;
             margin-bottom: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
-        h1 { color: #ff4d6d; margin-bottom: 10px; }
+        h1 { color: #ff4d6d; margin: 0 0 10px 0; font-size: 2.2em; }
         
-        /* Clase para efecto de desvanecimiento al cambiar texto */
-        .fade-text {
-            transition: opacity 0.5s;
-            font-size: 18px;
+        #mensaje {
+            font-size: 1.2rem;
             color: #444;
-            min-height: 50px;
+            min-height: 60px;
+            line-height: 1.4;
+            transition: all 0.4s ease;
         }
 
         button {
-            padding: 12px 25px;
-            font-size: 17px;
+            padding: 15px 35px;
+            font-size: 1.1rem;
             border: none;
-            border-radius: 25px;
+            border-radius: 50px;
             background: #ff4d6d;
             color: white;
             cursor: pointer;
             margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
             transition: 0.3s;
-            outline: none;
         }
 
         button:hover {
             background: #e63956;
-            transform: scale(1.05);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.6);
         }
 
+        /* Corazones de fondo */
         .heart {
             position: absolute;
             top: -10%;
-            color: #ff4d6d;
-            animation: fall linear forwards;
-            opacity: 0.7;
             pointer-events: none;
+            animation: fall linear forwards;
+            z-index: 1;
         }
 
         @keyframes fall {
             to { transform: translateY(110vh) rotate(360deg); }
+        }
+
+        /* Estilo de los Globos */
+        .balloon {
+            position: absolute;
+            bottom: -150px;
+            width: 60px;
+            height: 75px;
+            background: #ff4d6d;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.2s;
+            z-index: 50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: rise linear forwards;
+        }
+
+        .balloon::after { /* El nudo del globo */
+            content: "▲";
+            position: absolute;
+            bottom: -8px;
+            color: inherit;
+            font-size: 12px;
+        }
+
+        @keyframes rise {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-120vh) rotate(10deg); }
+        }
+
+        /* Efecto de explosión */
+        .pop {
+            animation: explode 0.3s forwards;
+        }
+
+        @keyframes explode {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
 <audio id="musica" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6a0e3c3fbb.mp3?filename=sweet-romantic-background-112199.mp3" type="audio/mpeg">
+    <source src="https://www.chosic.com/wp-content/uploads/2021/04/And-So-It-Begins-Inspired-By-Arrival-Music.mp3" type="audio/mpeg">
 </audio>
 
 <div class="container">
-    <h1>Cindy ❤️</h1>
+    <h1 id="titulo">Para Cindy ❤️</h1>
     <img src="cindy.jpeg" alt="Cindy">
-    <p id="mensaje" class="fade-text">Hoy quiero mostrarte algo especial...</p>
+    <p id="mensaje">Tengo algo importante que decirte...</p>
     <button id="btn-next" onclick="siguiente()">Empezar</button>
 </div>
 
 <script>
     const mensajes = [
         "Hoy celebramos tu vida 🎂",
-        "Celebramos la persona maravillosa que eres",
-        "Tu sonrisa ilumina mis días",
-        "Gracias por acompañarme en momentos buenos y difíciles",
-        "Eres muy especial para mí ❤️",
-        "Feliz cumpleaños Cindy 🎉",
-        "Tengo un pequeño regalo para ti 👟",
-        "Espero que este detalle te saque una sonrisa 💖",
-        "Tu regalo es elegir los tenis que más te gusten 👟❤️"
+        "La persona más maravillosa que conozco",
+        "Tu sonrisa ilumina cada uno de mis días",
+        "Gracias por estar conmigo en todo momento",
+        "Eres el regalo más bonito ❤️",
+        "¡Feliz Cumpleaños, mi vida! 🎉",
+        "Tengo un detalle especial preparado... 👟",
+        "Espero que esto te haga sonreír tanto como tú a mí 💖",
+        "Tu regalo es: ¡Elige los tenis que más te gusten! 👟🎁"
     ];
 
     let i = 0;
     const pMensaje = document.getElementById("mensaje");
     const btn = document.getElementById("btn-next");
     const audio = document.getElementById("musica");
+    let globosInterval;
 
     function siguiente() {
-        // Reproducir audio al primer clic
-        if (audio.paused) {
-            audio.play().catch(e => console.log("Audio esperando interacción"));
+        // Intento forzado de reproducción de audio al primer clic
+        if (i === 0) {
+            audio.play().catch(error => console.log("Error de audio:", error));
         }
 
         if (i < mensajes.length) {
-            // Efecto de parpadeo suave al cambiar texto
             pMensaje.style.opacity = 0;
             
             setTimeout(() => {
                 pMensaje.innerHTML = mensajes[i];
                 pMensaje.style.opacity = 1;
-                i++;
                 
-                if(i === mensajes.length) {
-                    btn.innerHTML = "Ver otra vez";
+                // Si es el último mensaje, lanzamos globos
+                if (i === mensajes.length - 1) {
+                    lanzarGlobos();
+                    btn.innerHTML = "¡Te amo! ❤️";
                 } else {
                     btn.innerHTML = "Continuar";
                 }
+                i++;
             }, 300);
-
         } else {
-            // Reiniciar
-            i = 0;
-            pMensaje.innerHTML = "Hoy quiero mostrarte algo especial...";
-            btn.innerHTML = "Empezar";
+            // Reiniciar flujo si se desea
+            location.reload(); 
         }
     }
 
+    // Lluvia de corazones constante
     function crearCorazon() {
         const heart = document.createElement("div");
         heart.className = "heart";
         heart.innerHTML = "❤️";
         heart.style.left = Math.random() * 100 + "vw";
-        // Duración aleatoria para que se vea más natural
-        const duracion = Math.random() * 3 + 3;
+        const duracion = Math.random() * 3 + 4;
         heart.style.animationDuration = duracion + "s";
-        heart.style.fontSize = Math.random() * 20 + 15 + "px";
-        
+        heart.style.fontSize = Math.random() * 15 + 10 + "px";
         document.body.appendChild(heart);
         setTimeout(() => heart.remove(), duracion * 1000);
     }
+    setInterval(crearCorazon, 400);
 
-    setInterval(crearCorazon, 350);
+    // Lógica de los globos
+    function lanzarGlobos() {
+        globosInterval = setInterval(() => {
+            const colors = ['#ff4d6d', '#ff758c', '#ffb3c1', '#a6c1ee', '#9575cd'];
+            const balloon = document.createElement("div");
+            balloon.className = "balloon";
+            balloon.style.left = Math.random() * 90 + "vw";
+            balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            const duracion = Math.random() * 2 + 5;
+            balloon.style.animationDuration = duracion + "s";
+            
+            // Al hacer clic en el globo, explota
+            balloon.onclick = function() {
+                this.classList.add('pop');
+                setTimeout(() => this.remove(), 300);
+            };
+
+            document.body.appendChild(balloon);
+            setTimeout(() => balloon.remove(), duracion * 1000);
+        }, 600);
+    }
 </script>
 </body>
 </html>
-
