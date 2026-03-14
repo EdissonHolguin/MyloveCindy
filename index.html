@@ -6,374 +6,398 @@
 <title>Para Mi Novia ❤️</title>
 
 <style>
-    body {
-        margin: 0;
-        font-family: 'Segoe UI', sans-serif;
-        background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        overflow: hidden;
-        text-align: center;
-    }
 
-    /* ===== Pantalla inicio ===== */
-    #capa-inicio {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background: rgba(255, 255, 255, 0.6);
-        backdrop-filter: blur(10px);
-        z-index: 200;
-        transition: opacity 1s;
-    }
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(135deg,#fbc2eb,#a6c1ee);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
+text-align:center;
+}
 
-    #mensaje-inicial {
-        font-size: 1.5rem;
-        color: #ff4d6d;
-        margin-bottom: 40px;
-    }
+/* ===== Pantalla inicio ===== */
 
-    .balloon-start {
-        width: 90px;
-        height: 110px;
-        border-radius: 50%;
-        margin: 0 30px;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 40px;
-        animation: float 3s ease-in-out infinite;
-        box-shadow: inset -10px -10px 15px rgba(0, 0, 0, 0.1);
-    }
+#capa-inicio{
+position:absolute;
+width:100%;
+height:100%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:rgba(255,255,255,0.6);
+backdrop-filter:blur(10px);
+z-index:200;
+transition:opacity 1s;
+}
 
-    #globo1 { background: #ff4d6d; }
-    #globo2 { background: #a6c1ee; }
+#mensaje-inicial{
+font-size:1.5rem;
+color:#ff4d6d;
+margin-bottom:40px;
+}
 
-    @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-20px); }
-    }
+.balloon-start{
+width:90px;
+height:110px;
+border-radius:50%;
+margin:0 30px;
+cursor:pointer;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:40px;
+animation:float 3s ease-in-out infinite;
+box-shadow: inset -10px -10px 15px rgba(0,0,0,0.1);
+}
 
-    /* Animación mejorada de explosión */
-    .pop {
-        animation: explode 0.5s ease-out forwards;
-    }
+#globo1{background:#ff4d6d;}
+#globo2{background:#a6c1ee;}
 
-    @keyframes explode {
-        0% { transform: scale(1); opacity: 1; }
-        50% { transform: scale(1.6); opacity: 0.8; }
-        100% { transform: scale(2); opacity: 0; display: none;}
-    }
+@keyframes float{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-20px)}
+}
 
-    .strawberry {
-        font-size: 2rem;
-        animation: slide 1s forwards;
-        margin-top: 20px;
-        color: #d00000;
-    }
+.pop{
+animation:explode 0.5s ease-out forwards;
+}
 
-    @keyframes slide {
-        from { opacity: 0; transform: translateY(40px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+@keyframes explode{
+0%{transform:scale(1);opacity:1}
+50%{transform:scale(1.6);opacity:0.8}
+100%{transform:scale(2);opacity:0}
+}
 
-    /* ===== Carta ===== */
-    .container {
-        background: white;
-        padding: 40px;
-        border-radius: 25px;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-        max-width: 420px;
-        display: none;
-        animation: fadeIn 1s ease forwards;
-        z-index: 10;
-        position: relative; /* Para posicionar elementos dentro */
-    }
+.strawberry{
+font-size:2rem;
+animation:slide 1s forwards;
+margin-top:20px;
+color:#d00000;
+}
 
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(30px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+@keyframes slide{
+from{opacity:0;transform:translateY(40px)}
+to{opacity:1;transform:translateY(0)}
+}
 
-    img {
-        width: 180px;
-        height: 180px;
-        object-fit: cover;
-        border-radius: 50%;
-        border: 5px solid #ff4d6d;
-        margin-bottom: 15px;
-    }
+/* ===== Carta ===== */
 
-    h1 { color: #ff4d6d; }
+.container{
+background:white;
+padding:40px;
+border-radius:25px;
+box-shadow:0 20px 50px rgba(0,0,0,0.15);
+max-width:420px;
+display:none;
+animation:fadeIn 1s ease forwards;
+}
 
-    button {
-        padding: 12px 25px;
-        border: none;
-        border-radius: 25px;
-        background: #ff4d6d;
-        color: white;
-        cursor: pointer;
-        margin-top: 20px;
-        transition: 0.3s;
-        font-weight: bold;
-    }
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(30px)}
+to{opacity:1;transform:translateY(0)}
+}
 
-    button:hover {
-        transform: scale(1.05);
-        background: #e63956;
-    }
+img{
+width:180px;
+height:180px;
+object-fit:cover;
+border-radius:50%;
+border:5px solid #ff4d6d;
+margin-bottom:15px;
+}
 
-    /* ===== Corazones ===== */
-    .heart {
-        position: absolute;
-        top: -10%;
-        color: #ff4d6d;
-        animation: fall linear forwards;
-        opacity: 0.7;
-        pointer-events: none;
-    }
+h1{color:#ff4d6d;}
 
-    @keyframes fall {
-        to { transform: translateY(110vh) rotate(360deg); }
-    }
+button{
+padding:12px 25px;
+border:none;
+border-radius:25px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+margin-top:20px;
+transition:0.3s;
+font-weight:bold;
+}
 
-    /* ===== Caja regalo ===== */
-    #gift-container {
-        display: none; /* Se muestra al final de los mensajes */
-        margin-top: 20px;
-        position: relative;
-        cursor: pointer;
-    }
+button:hover{
+transform:scale(1.05);
+background:#e63956;
+}
 
-    #gift {
-        font-size: 5rem;
-        transition: transform 0.2s ease-out; /* Suaviza el toque inicial */
-        display: inline-block;
-    }
+/* ===== Corazones ===== */
 
-    /* Animación de pulso constante ANTES de abrir */
-    #gift.pulse {
-        animation: giftPulse 1.5s infinite;
-    }
+.heart{
+position:absolute;
+top:-10%;
+color:#ff4d6d;
+animation:fall linear forwards;
+opacity:0.7;
+pointer-events:none;
+}
 
-    @keyframes giftPulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.1); }
-        100% { transform: scale(1); }
-    }
+@keyframes fall{
+to{transform:translateY(110vh) rotate(360deg)}
+}
 
-    /* Estado de "abriendo": Hinchazón justo al hacer clic */
-    #gift.opening {
-        transform: scale(1.4);
-    }
+/* ===== Regalo ===== */
 
-    /* Contenedor de la frase final */
-    #final-phrase-container {
-        display: none; /* Se revela al abrir el regalo */
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        margin-top: 20px;
-    }
+#gift-container{
+display:none;
+margin-top:20px;
+cursor:pointer;
+}
 
-    #final-phrase-container.reveal {
-        display: block;
-        opacity: 1;
-        transform: translateY(0);
-    }
+#gift{
+font-size:5rem;
+animation:giftPulse 1.5s infinite;
+}
 
-    #frase-final {
-        font-size: 1.3rem;
-        color: #ff4d6d;
-        font-weight: bold;
-    }
+@keyframes giftPulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.15)}
+100%{transform:scale(1)}
+}
+
+#gift.open{
+animation:openGift 0.6s forwards;
+}
+
+@keyframes openGift{
+0%{transform:scale(1)}
+50%{transform:scale(1.5)}
+100%{transform:scale(0);opacity:0}
+}
+
+#mensaje-final{
+display:none;
+font-size:1.4rem;
+color:#ff4d6d;
+font-weight:bold;
+animation:fadeIn 1s forwards;
+margin-top:20px;
+}
+
 </style>
 </head>
 
 <body>
 
 <audio id="musica" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6a0e3c3fbb.mp3?filename=sweet-romantic-background-112199.mp3">
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6a0e3c3fbb.mp3?filename=sweet-romantic-background-112199.mp3">
 </audio>
-<audio id="pop-sound">
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_7c64f0d2b1.mp3?filename=balloon-pop-101059.mp3">
+
+<audio id="pop">
+<source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_7c64f0d2b1.mp3?filename=balloon-pop-101059.mp3">
 </audio>
 
 <div id="capa-inicio">
-    <p id="mensaje-inicial">Para mi novia hermosa, con amor…<br>Explota los globos 🎈</p>
-    <div style="display:flex">
-        <div id="globo1" class="balloon-start" onclick="explotarGlobo(1)">🎈</div>
-        <div id="globo2" class="balloon-start" onclick="explotarGlobo(2)">🎈</div>
-    </div>
-    <div id="cont-fresas"></div>
-    <button id="btn-comenzar" style="display:none" onclick="mostrarCarta()">Leer tu carta ❤️</button>
+
+<p id="mensaje-inicial">Para mi novia hermosa, con amor…<br>Explota los globos 🎈</p>
+
+<div style="display:flex">
+<div id="globo1" class="balloon-start" onclick="explotarGlobo(1)">🎈</div>
+<div id="globo2" class="balloon-start" onclick="explotarGlobo(2)">🎈</div>
+</div>
+
+<div id="cont-fresas"></div>
+
+<button id="btn-comenzar" style="display:none" onclick="mostrarCarta()">Leer tu carta ❤️</button>
+
 </div>
 
 <div class="container" id="main-container">
-    <h1>AMORE ❤️</h1>
-    <img src="cindy.jpeg" alt="Cindy">
-    
-    <p id="mensaje">Hoy quiero mostrarte algo especial...</p>
-    
-    <button onclick="siguiente()" id="btn-next">Continuar</button>
-    
-    <div id="gift-container" onclick="abrirRegalo()">
-        <div id="gift" class="pulse">🎁</div>
-    </div>
 
-    <div id="final-phrase-container">
-        <p id="frase-final">Tu regalo es elegir los tenis que más te gusten 👟❤️</p>
-    </div>
+<h1>AMORE ❤️</h1>
+
+<img src="cindy.jpeg">
+
+<p id="mensaje">Hoy quiero mostrarte algo especial...</p>
+
+<button onclick="siguiente()" id="btn-next">Continuar</button>
+
+<div id="gift-container" onclick="abrirRegalo()">
+<div id="gift">🎁</div>
+</div>
+
+<div id="mensaje-final">
+Tu regalo es elegir los tenis que más te gusten 👟❤️
+</div>
+
 </div>
 
 <script>
-    const mensajes = [
-        "Amore hoy celebramos tu vida 🎂",
-        "La persona maravillosa que eres",
-        "Tu sonrisa alegra mis días",
-        "Gracias por acompañarme siempre",
-        "Eres muy especial para mí ❤️",
-        "Feliz cumpleaños mi amor 🎉",
-        "Tengo un pequeño regalo para ti 👟",
-        "Espero que este detalle te saque una sonrisa 💖",
-        "Presiona el regalo 🎁"
-    ];
 
-    let i = 0;
-    let globosExplotados = 0;
+const mensajes=[
+"Amore hoy celebramos tu vida 🎂",
+"La persona maravillosa que eres",
+"Tu sonrisa alegra mis días",
+"Gracias por acompañarme siempre",
+"Eres muy especial para mí ❤️",
+"Feliz cumpleaños mi amor 🎉",
+"Tengo un pequeño regalo para ti 👟",
+"Espero que este detalle te saque una sonrisa 💖",
+"Presiona el regalo 🎁"
+];
 
-    const musica = document.getElementById("musica");
-    const popSound = document.getElementById("pop-sound");
+let i=0;
+let globos=0;
 
-    /* ===== Lógica de Globos ===== */
-    function explotarGlobo(n) {
-        const globo = document.getElementById("globo" + n);
-        if (globo.classList.contains("pop")) return;
+const musica=document.getElementById("musica");
+const pop=document.getElementById("pop");
 
-        globo.classList.add("pop");
-        popSound.currentTime = 0; // Reinicia el sonido para toques rápidos
-        popSound.play();
+function explotarGlobo(n){
 
-        if (musica.paused) {
-            musica.play().catch(() => {}); // Intenta reproducir la música
-        }
+document.getElementById("globo"+n).classList.add("pop");
 
-        globosExplotados++;
-        crearFresa();
-    }
+pop.play();
 
-    function crearFresa() {
-        const cont = document.getElementById("cont-fresas");
-        const f = document.createElement("div");
-        f.className = "strawberry";
+if(musica.paused){
+musica.play().catch(()=>{});
+}
 
-        if (globosExplotados == 1) {
-            f.innerHTML = "🍓 Prepárate…";
-        } else if (globosExplotados == 2) {
-            f.innerHTML = "🍓🍓 …para tu cumpleaños";
-            document.getElementById("btn-comenzar").style.display = "block";
-            document.getElementById("mensaje-inicial").style.display = "none";
-        }
-        cont.appendChild(f);
-    }
+globos++;
 
-    /* ===== Transición a la Carta ===== */
-    function mostrarCarta() {
-        document.getElementById("capa-inicio").style.opacity = 0;
-        crearConfetti();
-        setTimeout(() => {
-            document.getElementById("capa-inicio").style.display = "none";
-            document.getElementById("main-container").style.display = "block";
-        }, 1000);
-    }
+crearFresa();
 
-    /* ===== Ciclo de Mensajes ===== */
-    function siguiente() {
-        const p = document.getElementById("mensaje");
-        const btn = document.getElementById("btn-next");
+}
 
-        if (i < mensajes.length) {
-            p.style.opacity = 0; // Desvanecimiento suave
-            setTimeout(() => {
-                p.innerHTML = mensajes[i];
-                p.style.opacity = 1;
-                i++;
-                // Cuando llegamos al último mensaje, mostramos el regalo
-                if (i === mensajes.length) {
-                    btn.style.display = "none";
-                    document.getElementById("gift-container").style.display = "block";
-                }
-            }, 300);
-        }
-    }
+function crearFresa(){
 
-    /* ===== NUEVA FUNCIÓN: Abrir Regalo con Efecto ===== */
-    function abrirRegalo() {
-        const giftElement = document.getElementById("gift");
-        const giftContainer = document.getElementById("gift-container");
-        const mainMessage = document.getElementById("mensaje");
-        const finalPhraseContainer = document.getElementById("final-phrase-container");
+const cont=document.getElementById("cont-fresas");
 
-        // 1. Efecto visual al tocar: Hinchazón instantánea
-        giftElement.classList.remove("pulse"); // Quita el pulso constante
-        giftElement.classList.add("opening");
+const f=document.createElement("div");
 
-        // Reproduce el sonido de "pop" de nuevo para el regalo
-        popSound.currentTime = 0;
-        popSound.play();
+f.className="strawberry";
 
-        // 2. Ejecuta la animación de explosión/desaparición (clase .pop)
-        setTimeout(() => {
-            giftElement.classList.remove("opening");
-            giftElement.classList.add("pop");
-        }, 200); // Pequeño retraso para que se note la hinchazón
+if(globos==1){
+f.innerHTML="🍓 Prepárate…";
+}
 
-        // 3. Revela la frase final e inicia la celebración
-        setTimeout(() => {
-            giftContainer.style.display = "none"; // Oculta el contenedor del regalo
-            mainMessage.style.display = "none"; // Oculta el mensaje principal de la carta
+if(globos==2){
+f.innerHTML="🍓🍓 …para tu cumpleaños";
+document.getElementById("btn-comenzar").style.display="block";
+document.getElementById("mensaje-inicial").style.display="none";
+}
 
-            finalPhraseContainer.classList.add("reveal"); // Muestra la frase con fade-in
-            crearConfetti(); // ¡Más celebración!
-        }, 700); // Tiempo que dura la animación de explosión (.pop)
-    }
+cont.appendChild(f);
 
-    /* ===== Efectos Visuales (Corazones y Confetti) ===== */
-    function crearCorazon() {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerHTML = "❤️";
-        heart.style.left = Math.random() * 100 + "vw";
-        const dur = Math.random() * 3 + 3; // Duración aleatoria
-        heart.style.animationDuration = dur + "s";
-        heart.style.fontSize = Math.random() * 20 + 15 + "px";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), dur * 1000);
-    }
+}
 
-    function crearConfetti() {
-        for (let j = 0; j < 60; j++) {
-            const conf = document.createElement("div");
-            conf.className = "heart"; // Reutilizamos la clase para la caída
-            conf.innerHTML = j % 2 === 0 ? "🎉" : "✨"; // Alterna emojis
-            conf.style.left = Math.random() * 100 + "vw";
-            conf.style.top = "-5vh";
-            const dur = Math.random() * 2 + 2;
-            conf.style.animationDuration = dur + "s";
-            document.body.appendChild(conf);
-            setTimeout(() => conf.remove(), dur * 1000);
-        }
-    }
+function mostrarCarta(){
 
-    // Inicia la lluvia de corazones de fondo
-    setInterval(crearCorazon, 400);
+document.getElementById("capa-inicio").style.opacity=0;
+
+crearConfetti();
+
+setTimeout(()=>{
+document.getElementById("capa-inicio").style.display="none";
+document.getElementById("main-container").style.display="block";
+},1000);
+
+}
+
+function siguiente(){
+
+const p=document.getElementById("mensaje");
+const btn=document.getElementById("btn-next");
+
+if(i<mensajes.length){
+
+p.style.opacity=0;
+
+setTimeout(()=>{
+p.innerHTML=mensajes[i];
+p.style.opacity=1;
+i++;
+
+if(i===mensajes.length){
+btn.style.display="none";
+document.getElementById("gift-container").style.display="block";
+}
+
+},300);
+
+}
+
+}
+
+function abrirRegalo(){
+
+const gift=document.getElementById("gift");
+
+gift.classList.add("open");
+
+pop.play();
+
+setTimeout(()=>{
+
+document.getElementById("gift-container").style.display="none";
+document.getElementById("mensaje").style.display="none";
+
+document.getElementById("mensaje-final").style.display="block";
+
+crearConfetti();
+
+},600);
+
+}
+
+function crearCorazon(){
+
+const heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+const dur=Math.random()*3+3;
+
+heart.style.animationDuration=dur+"s";
+
+heart.style.fontSize=Math.random()*20+15+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),dur*1000);
+
+}
+
+setInterval(crearCorazon,400);
+
+function crearConfetti(){
+
+for(let i=0;i<60;i++){
+
+const conf=document.createElement("div");
+
+conf.className="heart";
+
+conf.innerHTML=i%2==0?"🎉":"✨";
+
+conf.style.left=Math.random()*100+"vw";
+
+conf.style.top="-10px";
+
+const dur=Math.random()*2+2;
+
+conf.style.animationDuration=dur+"s";
+
+document.body.appendChild(conf);
+
+setTimeout(()=>conf.remove(),dur*1000);
+
+}
+
+}
+
 </script>
 
 </body>
