@@ -6,366 +6,320 @@
 <title>Para Mi Novia ❤️</title>
 
 <style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        text-align: center;
+    }
 
-body{
-margin:0;
-font-family:'Segoe UI',sans-serif;
-background:linear-gradient(135deg,#fbc2eb,#a6c1ee);
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-overflow:hidden;
-text-align:center;
-}
+    /* ===== Pantalla inicio ===== */
+    #capa-inicio {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(10px);
+        z-index: 200;
+        transition: opacity 1s;
+    }
 
-/* ===== Pantalla inicio ===== */
+    #mensaje-inicial {
+        font-size: 1.5rem;
+        color: #ff4d6d;
+        margin-bottom: 40px;
+    }
 
-#capa-inicio{
-position:absolute;
-width:100%;
-height:100%;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-background:rgba(255,255,255,0.6);
-backdrop-filter:blur(10px);
-z-index:200;
-transition:opacity 1s;
-}
+    .balloon-start {
+        width: 90px;
+        height: 110px;
+        border-radius: 50%;
+        margin: 0 30px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 40px;
+        animation: float 3s ease-in-out infinite;
+        box-shadow: inset -10px -10px 15px rgba(0, 0, 0, 0.1);
+    }
 
-#mensaje-inicial{
-font-size:1.5rem;
-color:#ff4d6d;
-margin-bottom:40px;
-}
+    #globo1 { background: #ff4d6d; }
+    #globo2 { background: #a6c1ee; }
 
-.balloon-start{
-width:90px;
-height:110px;
-border-radius:50%;
-margin:0 30px;
-cursor:pointer;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:40px;
-animation:float 3s ease-in-out infinite;
-box-shadow: inset -10px -10px 15px rgba(0,0,0,0.1);
-}
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+    }
 
-#globo1{background:#ff4d6d;}
-#globo2{background:#a6c1ee;}
+    .pop { animation: explode 0.3s forwards; }
 
-@keyframes float{
-0%,100%{transform:translateY(0)}
-50%{transform:translateY(-20px)}
-}
+    @keyframes explode {
+        0% { transform: scale(1); opacity: 1; }
+        100% { transform: scale(2); opacity: 0; }
+    }
 
-.pop{
-animation:explode 0.3s forwards;
-}
+    .strawberry {
+        font-size: 2rem;
+        animation: slide 1s forwards;
+        margin-top: 20px;
+        color: #d00000;
+    }
 
-@keyframes explode{
-0%{transform:scale(1);opacity:1}
-100%{transform:scale(2);opacity:0}
-}
+    @keyframes slide {
+        from { opacity: 0; transform: translateY(40px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
 
-.strawberry{
-font-size:3rem;
-animation:slide 1s forwards;
-margin-top:20px;
-}
+    /* ===== Carta ===== */
+    .container {
+        background: white;
+        padding: 40px;
+        border-radius: 25px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        max-width: 420px;
+        display: none;
+        animation: fadeIn 1s ease forwards;
+        z-index: 10;
+    }
 
-@keyframes slide{
-from{opacity:0;transform:translateY(40px)}
-to{opacity:1;transform:translateY(0)}
-}
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
 
-/* ===== Carta ===== */
+    img {
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 5px solid #ff4d6d;
+        margin-bottom: 15px;
+    }
 
-.container{
-background:white;
-padding:40px;
-border-radius:25px;
-box-shadow:0 20px 50px rgba(0,0,0,0.15);
-max-width:420px;
-display:none;
-animation:fadeIn 1s ease forwards;
-}
+    h1 { color: #ff4d6d; }
 
-@keyframes fadeIn{
-from{opacity:0;transform:translateY(30px)}
-to{opacity:1;transform:translateY(0)}
-}
+    button {
+        padding: 12px 25px;
+        border: none;
+        border-radius: 25px;
+        background: #ff4d6d;
+        color: white;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: 0.3s;
+        font-weight: bold;
+    }
 
-img{
-width:180px;
-border-radius:50%;
-border:5px solid #ff4d6d;
-margin-bottom:15px;
-}
+    button:hover {
+        transform: scale(1.05);
+        background: #e63956;
+    }
 
-h1{color:#ff4d6d;}
+    /* ===== Corazones ===== */
+    .heart {
+        position: absolute;
+        top: -10%;
+        color: #ff4d6d;
+        animation: fall linear forwards;
+        opacity: 0.7;
+        pointer-events: none;
+    }
 
-button{
-padding:12px 25px;
-border:none;
-border-radius:25px;
-background:#ff4d6d;
-color:white;
-cursor:pointer;
-margin-top:20px;
-transition:0.3s;
-}
+    @keyframes fall {
+        to { transform: translateY(110vh) rotate(360deg); }
+    }
 
-button:hover{
-transform:scale(1.05);
-background:#e63956;
-}
+    /* ===== Caja regalo ===== */
+    #gift {
+        font-size: 5rem;
+        display: none;
+        cursor: pointer;
+        margin-top: 20px;
+        animation: bounce 0.6s infinite alternate;
+    }
 
-/* ===== Corazones ===== */
+    @keyframes bounce {
+        from { transform: scale(1); }
+        to { transform: scale(1.2); }
+    }
 
-.heart{
-position:absolute;
-top:-10%;
-color:#ff4d6d;
-animation:fall linear forwards;
-opacity:0.7;
-}
-
-@keyframes fall{
-to{transform:translateY(110vh) rotate(360deg)}
-}
-
-/* ===== Caja regalo ===== */
-
-#gift{
-font-size:4rem;
-display:none;
-cursor:pointer;
-animation:bounce 1s infinite alternate;
-}
-
-@keyframes bounce{
-from{transform:translateY(0)}
-to{transform:translateY(-15px)}
-}
-
+    #frase-final {
+        display: none;
+        font-size: 1.3rem;
+        color: #ff4d6d;
+        font-weight: bold;
+        margin-top: 20px;
+        animation: fadeIn 1s;
+    }
 </style>
 </head>
 
 <body>
 
 <audio id="musica" loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6a0e3c3fbb.mp3?filename=sweet-romantic-background-112199.mp3">
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6a0e3c3fbb.mp3?filename=sweet-romantic-background-112199.mp3">
 </audio>
-
-<audio id="pop">
-<source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_7c64f0d2b1.mp3?filename=balloon-pop-101059.mp3">
+<audio id="pop-sound">
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_7c64f0d2b1.mp3?filename=balloon-pop-101059.mp3">
 </audio>
 
 <div id="capa-inicio">
-
-<p id="mensaje-inicial">Para mi novia hermosa, con amor…<br>Explota los globos 🎈</p>
-
-<div style="display:flex">
-<div id="globo1" class="balloon-start" onclick="explotarGlobo(1)">🎈</div>
-<div id="globo2" class="balloon-start" onclick="explotarGlobo(2)">🎈</div>
-</div>
-
-<div id="cont-fresas"></div>
-
-<button id="btn-comenzar" style="display:none" onclick="mostrarCarta()">Leer tu carta ❤️</button>
-
+    <p id="mensaje-inicial">Para mi novia hermosa, con amor…<br>Explota los globos 🎈</p>
+    <div style="display:flex">
+        <div id="globo1" class="balloon-start" onclick="explotarGlobo(1)">🎈</div>
+        <div id="globo2" class="balloon-start" onclick="explotarGlobo(2)">🎈</div>
+    </div>
+    <div id="cont-fresas"></div>
+    <button id="btn-comenzar" style="display:none" onclick="mostrarCarta()">Leer tu carta ❤️</button>
 </div>
 
 <div class="container" id="main-container">
-
-<h1>AMORE ❤️</h1>
-
-<img src="cindy.jpeg">
-
-<p id="mensaje">Hoy quiero mostrarte algo especial...</p>
-
-<button onclick="siguiente()" id="btn-next">Continuar</button>
-
-<div id="gift" onclick="mostrarRegalo()">🎁</div>
-
+    <h1>AMORE ❤️</h1>
+    <img src="cindy.jpeg" alt="Cindy">
+    <p id="mensaje">Hoy quiero mostrarte algo especial...</p>
+    
+    <button onclick="siguiente()" id="btn-next">Continuar</button>
+    
+    <div id="gift" onclick="mostrarRegalo()">🎁</div>
+    <p id="frase-final"></p>
 </div>
 
 <script>
-
-const mensajes=[
-"Amore hoy celebramos tu vida 🎂",
-"La persona maravillosa que eres",
-"Tu sonrisa alegra mis días",
-"Gracias por acompañarme siempre",
-"Eres muy especial para mí ❤️",
-"Feliz cumpleaños mi amor 🎉",
-"Tengo un pequeño regalo para ti 👟",
-"Espero que este detalle te saque una sonrisa 💖",
-"Presiona el regalo 🎁"
-];
-
-let i=0;
-let globos=0;
-
-const audio=document.getElementById("musica");
-const pop=document.getElementById("pop");
-
-/* ===== Globos ===== */
-
-function explotarGlobo(n){
-
-document.getElementById("globo"+n).classList.add("pop");
-
-pop.play();
-
-if(audio.paused){
-audio.play().catch(()=>{});
-}
-
-globos++;
-
-setTimeout(()=>{
-crearFresa();
-},300);
-
-}
-
-function crearFresa(){
-
-const cont=document.getElementById("cont-fresas");
-
-const f=document.createElement("div");
-
-f.className="strawberry";
-
-if(globos==1){
-f.innerHTML="🍓 Prepárate…";
-}
-
-if(globos==2){
-f.innerHTML="🍓🍓 …para tu cumpleaños";
-document.getElementById("btn-comenzar").style.display="block";
-document.getElementById("mensaje-inicial").style.display="none";
-}
-
-cont.appendChild(f);
-
-}
-
-/* ===== transición carta ===== */
-
-function mostrarCarta(){
-
-document.getElementById("capa-inicio").style.opacity=0;
-
-crearConfetti();
-
-setTimeout(()=>{
-document.getElementById("capa-inicio").style.display="none";
-document.getElementById("main-container").style.display="block";
-},1000);
-
-}
-
-/* ===== mensajes carta ===== */
-
-function siguiente(){
-
-const p=document.getElementById("mensaje");
-
-const btn=document.getElementById("btn-next");
-
-if(i<mensajes.length){
-
-p.style.opacity=0;
-
-setTimeout(()=>{
-p.innerHTML=mensajes[i];
-p.style.opacity=1;
-i++;
-},300);
-
-}else{
-
-document.getElementById("gift").style.display="block";
-btn.style.display="none";
-
-}
-
-}
-
-/* ===== regalo final ===== */
-
-function mostrarRegalo(){
-
-document.getElementById("mensaje").innerHTML=
-"Tu regalo es elegir los tenis que más te gusten 👟❤️";
-
-}
-
-/* ===== corazones ===== */
-
-function crearCorazon(){
-
-const heart=document.createElement("div");
-
-heart.className="heart";
-
-heart.innerHTML="❤️";
-
-heart.style.left=Math.random()*100+"vw";
-
-const dur=Math.random()*3+3;
-
-heart.style.animationDuration=dur+"s";
-
-heart.style.fontSize=Math.random()*20+15+"px";
-
-document.body.appendChild(heart);
-
-setTimeout(()=>heart.remove(),dur*1000);
-
-}
-
-setInterval(crearCorazon,400);
-
-/* ===== confetti ===== */
-
-function crearConfetti(){
-
-for(let i=0;i<80;i++){
-
-const conf=document.createElement("div");
-
-conf.innerHTML="🎉";
-
-conf.style.position="absolute";
-
-conf.style.left=Math.random()*100+"vw";
-
-conf.style.top="-10px";
-
-conf.style.fontSize=Math.random()*20+10+"px";
-
-conf.style.animation="fall 3s linear forwards";
-
-document.body.appendChild(conf);
-
-setTimeout(()=>conf.remove(),3000);
-
-}
-
-}
-
-</script>
-
-</body>
-</html>
+    const mensajes = [
+        "Amore hoy celebramos tu vida 🎂",
+        "La persona maravillosa que eres",
+        "Tu sonrisa alegra mis días",
+        "Gracias por acompañarme siempre",
+        "Eres muy especial para mí ❤️",
+        "Feliz cumpleaños mi amor 🎉",
+        "Tengo un pequeño regalo para ti 👟",
+        "Espero que este detalle te saque una sonrisa 💖",
+        "Presiona el regalo 🎁"
+    ];
+
+    let i = 0;
+    let globosExplotados = 0;
+
+    const musica = document.getElementById("musica");
+    const popSound = document.getElementById("pop-sound");
+
+    /* ===== Lógica de Globos ===== */
+    function explotarGlobo(n) {
+        const globo = document.getElementById("globo" + n);
+        if (globo.classList.contains("pop")) return;
+
+        globo.classList.add("pop");
+        popSound.currentTime = 0;
+        popSound.play();
+
+        if (musica.paused) {
+            musica.play().catch(() => {});
+        }
+
+        globosExplotados++;
+        crearFresa();
+    }
+
+    function crearFresa() {
+        const cont = document.getElementById("cont-fresas");
+        const f = document.createElement("div");
+        f.className = "strawberry";
+
+        if (globosExplotados == 1) {
+            f.innerHTML = "🍓 Prepárate…";
+        } else if (globosExplotados == 2) {
+            f.innerHTML = "🍓🍓 …para tu cumpleaños";
+            document.getElementById("btn-comenzar").style.display = "block";
+            document.getElementById("mensaje-inicial").style.display = "none";
+        }
+        cont.appendChild(f);
+    }
+
+    /* ===== Transición a la Carta ===== */
+    function mostrarCarta() {
+        document.getElementById("capa-inicio").style.opacity = 0;
+        crearConfetti();
+        setTimeout(() => {
+            document.getElementById("capa-inicio").style.display = "none";
+            document.getElementById("main-container").style.display = "block";
+        }, 1000);
+    }
+
+    /* ===== Ciclo de Mensajes ===== */
+    function siguiente() {
+        const p = document.getElementById("mensaje");
+        const btn = document.getElementById("btn-next");
+
+        if (i < mensajes.length) {
+            p.style.opacity = 0;
+            setTimeout(() => {
+                p.innerHTML = mensajes[i];
+                p.style.opacity = 1;
+                i++;
+                // Si llegamos al último mensaje ("Presiona el regalo"), mostramos el regalo
+                if (i === mensajes.length) {
+                    btn.style.display = "none";
+                    document.getElementById("gift").style.display = "block";
+                }
+            }, 300);
+        }
+    }
+
+    /* ===== Revelar Regalo Final ===== */
+    function mostrarRegalo() {
+        const regalo = document.getElementById("gift");
+        const fraseFinal = document.getElementById("frase-final");
+        const mensajePrincipal = document.getElementById("mensaje");
+
+        regalo.style.animation = "explode 0.5s forwards";
+        mensajePrincipal.style.display = "none";
+        
+        setTimeout(() => {
+            regalo.style.display = "none";
+            fraseFinal.innerHTML = "Tu regalo es elegir los tenis que más te gusten 👟❤️";
+            fraseFinal.style.display = "block";
+            crearConfetti(); // Celebramos de nuevo al abrirlo
+        }, 500);
+    }
+
+    /* ===== Efectos Visuales (Corazones y Confetti) ===== */
+    function crearCorazon() {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        const dur = Math.random() * 3 + 3;
+        heart.style.animationDuration = dur + "s";
+        heart.style.fontSize = Math.random() * 20 + 15 + "px";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), dur * 1000);
+    }
+
+    function crearConfetti() {
+        for (let j = 0; j < 60; j++) {
+            const conf = document.createElement("div");
+            conf.className = "heart"; // Reutilizamos la clase para la caída
+            conf.innerHTML = j % 2 === 0 ? "🎉" : "✨";
+            conf.style.left = Math.random() * 100 + "vw";
+            conf.style.top = "-5vh";
+            const dur = Math.random() * 2 + 2;
+            conf.style.animationDuration = dur + "s";
+            document.body.appendChild(conf);
+            setTimeout(() => conf.remove(), dur * 1000);
+        }
+    }
+
+    setInterval(crearCorazon, 400);
 </script>
 
 </body>
